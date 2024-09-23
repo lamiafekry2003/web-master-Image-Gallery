@@ -1,48 +1,61 @@
 
-let next = document.querySelector('#next');
-let back = document.querySelector('#back');
-let scrollContainer = document.querySelector('.caursol');
-let dotcontainer=document.querySelector('.dots-container')
-let images=document.querySelector('.caursol img')
+let currentIndex = 0; // Start with the first image
+const scrollContainer = document.querySelector('.caursol');
+const next = document.querySelector('#next');
+const back = document.querySelector('#back');
+const dots = document.querySelectorAll('.dot');
+const imageWidth = scrollContainer.querySelector('img').clientWidth;
 
-// Using mouse events for drag scrolling
-let isDragging = false;
-let startX = 0;
+function currentSlide(index) {
+    currentIndex = index - 1; 
+    scrollContainer.scrollLeft = imageWidth * currentIndex; 
+    updateDots(); 
+}
 
-scrollContainer.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    startX = e.clientX;
-    clearInterval(autoScroll); // Pause auto-scroll when dragging
-});
-
-scrollContainer.addEventListener('mouseup', () => {
-    isDragging = false;
-    autoScroll = setInterval(scrollNext, 3000); // Resume auto-scroll
-});
-
-scrollContainer.addEventListener('mouseleave', () => {
-    isDragging = false;
-});
-
-scrollContainer.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault(); // Prevent text selection
-    scrollContainer.scrollLeft -= (e.clientX - startX);
-    startX = e.clientX;
-});
+// Function to update the active dot
+function updateDots() {
+    dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+}
 
 // Function to scroll the images to the right
 function scrollNext() {
-    scrollContainer.scrollLeft += 1200// Scroll by the container width
+    if (currentIndex < dots.length - 1) {
+        currentIndex++;
+    } else {
+        currentIndex = 0; 
+    }
+    scrollContainer.scrollLeft = imageWidth * currentIndex;
+    updateDots();
 }
 
 // Function to scroll the images to the left
 function scrollBack() {
-    scrollContainer.scrollLeft -= 1200;
+    if (currentIndex > 0) {
+        currentIndex--;
+    } else {
+        currentIndex = dots.length - 1; 
+    }
+    scrollContainer.scrollLeft = imageWidth * currentIndex;
+    updateDots();
 }
 
-// Auto-scroll functionality
-let autoScroll = setInterval(scrollNext, 3000); // Change image every 3 seconds
+// Add click event listeners to dots
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => currentSlide(index + 1));
+});
+
+// Using next and back icons
+next.addEventListener('click', scrollNext);
+back.addEventListener('click', scrollBack);
+
+// Auto-scroll 
+let autoScroll = setInterval(scrollNext, 3000); 
 
 // Pause auto-scroll on hover
 scrollContainer.addEventListener('mouseenter', () => {
@@ -53,8 +66,5 @@ scrollContainer.addEventListener('mouseenter', () => {
 scrollContainer.addEventListener('mouseleave', () => {
     autoScroll = setInterval(scrollNext, 3000); 
 });
-
-// Using next and back icons for navigation
-next.addEventListener('click', scrollNext);
-back.addEventListener('click', scrollBack);
-
+// Initialize active dot on load
+updateDots();

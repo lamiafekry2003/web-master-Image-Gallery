@@ -12,30 +12,39 @@
 </head>
 
 <body>
-    <div class="slider">
-        <i class="fa-solid fa-angle-left" id="back"></i>
-        <div class="caursol">
-            <img src="images/img1.jpg" alt="">
-            <img src="images/img2.jpg" alt="">
-            <img src="images/img3.webp" alt="">
-            <img src="images/img-3.jpg" alt="">
-            <img src="images/img3 (2).webp" alt="">
-            <img src="images/img-4.jpg" alt="">
-            <img src="images/img4.jpg" alt="">
-            <img src="images/img4.webp" alt="">
-            <img src="images/img-5.jpg" alt="">
-            <img src="images/img5.jpg" alt="">
-            <img src="images/img-6.jpg" alt="">
-            <img src="images/img6.jpg" alt="">
-            <img src="images/img-7.jpg" alt="">
-            <img src="images/img-8.jpg" alt="">
-            <img src="images/img-9.jpg" alt="">
-            <img src="images/img9.webp" alt="">
-            <img src="images/img10.webp" alt="">
-            <img src="images/img11.jpg" alt="">
+    <div style="display: flex; flex-direction: column;">
+        <div class="slider">
+            <i class="fa-solid fa-angle-left" id="back"></i>
+            <div class="caursol">
+                <img src="images/img1.jpg" alt="">
+                <img src="images/img2.jpg" alt="">
+                <img src="images/img3.webp" alt="">
+                <img src="images/img-3.jpg" alt="">
+                <img src="images/img3 (2).webp" alt="">
+                <img src="images/img-4.jpg" alt="">
+                <img src="images/img4.jpg" alt="">
+                <img src="images/img4.webp" alt="">
+                <img src="images/img-5.jpg" alt="">
+                <img src="images/img5.jpg" alt="">
+                <img src="images/img-6.jpg" alt="">
+                <img src="images/img6.jpg" alt="">
+                <img src="images/img-7.jpg" alt="">
+                <img src="images/img-8.jpg" alt="">
+                <img src="images/img-9.jpg" alt="">
+                <img src="images/img9.webp" alt="">
+                <img src="images/img10.webp" alt="">
+                <img src="images/img11.jpg" alt="">
+            </div>
+            <i class="fa-solid fa-angle-right" id="next"></i>
         </div>
-        <i class="fa-solid fa-angle-right" id="next"></i>
-
+        <div class="pagination">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+          </div>
     </div>
     <script src="js/script.js"></script>
 </body>
